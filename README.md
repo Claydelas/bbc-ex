@@ -24,7 +24,15 @@ One could also import **parse** as a module in another script:
 ```py
 from parse import analyse
 
-analyse('./bg-sentence-pair-scores.csv', export=True)
+analyse('./bg-sentence-pair-scores.csv')
+```
+If access to the output series objects is required and/or exporting the outputs to files is undesirable, one could use the **Parser** class instead, which offers a more granular control of the process:
+```py
+from parse import Parser
+
+parser = Parser('./bg-sentence-pair-scores.csv')
+eval_avg_series = parser.eval_avg()
+sent_avg_series, max_series, min_series = parser.sent_avg()
 ```
 ## Output
 The script generates json files with outputs for each task with the following schemas:
